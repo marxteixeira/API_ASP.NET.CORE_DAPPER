@@ -2,15 +2,25 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.4.33213.308
 MinimumVisualStudioVersion = 15.0.26124.0
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MxStore.Api", "MxStore.Api\MxStore.Api.csproj", "{5F34FB6C-8B25-4537-8806-D7D057DE42D7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MxStore.Api", "MxStore.Api\MxStore.Api.csproj", "{5F34FB6C-8B25-4537-8806-D7D057DE42D7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MxStore.Domain", "MxStore.Domain\MxStore.Domain.csproj", "{E86BB36C-F16A-44BE-AC5C-190BADED26DC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MxStore.Domain", "MxStore.Domain\MxStore.Domain.csproj", "{E86BB36C-F16A-44BE-AC5C-190BADED26DC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MxStore.Infra", "MxStore.Infra\MxStore.Infra.csproj", "{485C2628-B6F4-4B30-B852-364D7C30049B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MxStore.Infra", "MxStore.Infra\MxStore.Infra.csproj", "{485C2628-B6F4-4B30-B852-364D7C30049B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MxStore.Shared", "MxStore.Shared\MxStore.Shared.csproj", "{0EC6D3A3-AD50-4C07-9DA3-AFEB6FDB5A42}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MxStore.Shared", "MxStore.Shared\MxStore.Shared.csproj", "{0EC6D3A3-AD50-4C07-9DA3-AFEB6FDB5A42}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MxStore.Tests", "MxStore.Tests\MxStore.Tests.csproj", "{2F97C720-48D2-414A-8001-9BE540F179E2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MxStore.Tests", "MxStore.Tests\MxStore.Tests.csproj", "{2F97C720-48D2-414A-8001-9BE540F179E2}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1 - MxStore.Api", "1 - MxStore.Api", "{33450352-4BB5-4B1B-92AA-D30F84C6821D}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2 - MxStore.Domain", "2 - MxStore.Domain", "{C88F9289-F3AC-4FC2-AD0D-A0D31CD54CD1}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3 - MxStore.Infra", "3 - MxStore.Infra", "{8531739E-81FC-48F5-8D9B-986C313C8995}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "4 - MxStore.Shared", "4 - MxStore.Shared", "{AE94F26D-7D2E-4061-A091-EE3F6A4E62EA}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "5 - MxStore.Tests", "5 - MxStore.Tests", "{5EAE9ADE-0026-405E-8C46-C4E3310DF7AB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -85,6 +95,13 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{5F34FB6C-8B25-4537-8806-D7D057DE42D7} = {33450352-4BB5-4B1B-92AA-D30F84C6821D}
+		{E86BB36C-F16A-44BE-AC5C-190BADED26DC} = {C88F9289-F3AC-4FC2-AD0D-A0D31CD54CD1}
+		{485C2628-B6F4-4B30-B852-364D7C30049B} = {8531739E-81FC-48F5-8D9B-986C313C8995}
+		{0EC6D3A3-AD50-4C07-9DA3-AFEB6FDB5A42} = {AE94F26D-7D2E-4061-A091-EE3F6A4E62EA}
+		{2F97C720-48D2-414A-8001-9BE540F179E2} = {5EAE9ADE-0026-405E-8C46-C4E3310DF7AB}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {BAB7E408-2D29-4500-A64C-AA2E8A4FCDAD}
