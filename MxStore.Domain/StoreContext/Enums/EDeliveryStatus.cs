@@ -4,7 +4,7 @@ using System.Text;
 
 namespace MxStore.Domain.StoreContext.Enums
 {
-    public enum EDiliveryStatus
+    public enum EDeliveryStatus
     {
         Waiting = 1,
         Shipped = 2,
