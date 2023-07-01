@@ -10,7 +10,7 @@ namespace MxStore.Domain.StoreContext.Entities
     {
         private readonly IList<Address> _addresses;
 
-        public Customer(Name name, string document, string email, string phone)
+        public Customer(Name name, Document document, Email email, string phone)
         {
             Name = name;
             Document = document;
@@ -21,8 +21,8 @@ namespace MxStore.Domain.StoreContext.Entities
         }
 
         public Name Name { get; set; }
-        public string Document { get; private set; }
-        public string Email { get; private set; }
+        public Document Document { get; private set; }
+        public Email Email { get; private set; }
         public string Phone { get; private set; }
         public IReadOnlyCollection<Address> Addresses => _addresses.ToArray(); //ou { get {return _address.ToArray();} }
         public DateTime BirthDate { get; private set; }
@@ -43,7 +43,7 @@ namespace MxStore.Domain.StoreContext.Entities
 
         public override string ToString()
         {
-            return $"{Name.FirstName}{Name.LastName}";
+            return Name.ToString();
         }
     }
 }
