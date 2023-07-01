@@ -1,6 +1,7 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using MxStore.Domain.StoreContext;
 using MxStore.Domain.StoreContext.Entities;
+using MxStore.Domain.StoreContext.ValueObjects;
 
 namespace MxStore.Tests
 {
@@ -10,17 +11,33 @@ namespace MxStore.Tests
         [TestMethod]
         public void TestMethod1()
         {
-            var customer = new Customer(
-                "Marx",
-                "Teixeira",
-                "10902174633",
-                "email@email.com",
-                "32984629999",
-                "Rua dos Developers, 10"
-                );
+            var name = new Name("Marx", "Teixeira");
+            var document = new Document("12345678911");
+            var email = new Email("email@email.com");
+            var c = new Customer(name, document, email, "1999207414");
+            var mouse = new Product("Mouse", "Rato", "image.png", 59.90M, 10);
+            var teclado = new Product("Teclado", "Teclado", "image.png", 159.90M, 10);
+            var impressora = new Product("Impressora", "Impressora", "image.png", 359.90M, 10);
+            var cadeira = new Product("Cadeira", "Cadeira", "image.png", 559.90M, 10);
 
-            var order = new Order();
-            order.Items.Add
+            var order = new Order(c);
+            order.AddItem(new OrderItem(mouse, 5));
+            order.AddItem(new OrderItem(teclado, 5));
+            order.AddItem(new OrderItem(cadeira, 5));
+            order.AddItem(new OrderItem(impressora, 5));
+
+            //realizei o pedido
+            order.Place();
+
+            //simular o pagamento
+            order.Pay();
+
+            //simular o envio
+            order.Ship();
+
+            //simular o cancelamento
+            order.Cancel();
+
         }
     }
 }
