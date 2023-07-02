@@ -1,4 +1,5 @@
-﻿using MxStore.Domain.StoreContext.Enums;
+﻿using FluentValidator;
+using MxStore.Domain.StoreContext.Enums;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -6,7 +7,7 @@ using System.Text;
 
 namespace MxStore.Domain.StoreContext.Entities
 {
-    public class Order
+    public class Order : Notifiable
     {
         private readonly IList<OrderItem> _items;
         private readonly IList<Delivery> _deliveries;
@@ -44,6 +45,10 @@ namespace MxStore.Domain.StoreContext.Entities
             Number = Guid.NewGuid().ToString().Replace("-", "").Substring(0, 8).ToUpper();
 
             //validar
+            if (_items.Count == 0)
+            {
+                AddNotification("Order", "Este pedido não possui itens.");
+            }
         }
 
         //pagar um pedido

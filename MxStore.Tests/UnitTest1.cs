@@ -21,13 +21,16 @@ namespace MxStore.Tests
             var cadeira = new Product("Cadeira", "Cadeira", "image.png", 559.90M, 10);
 
             var order = new Order(c);
-            order.AddItem(new OrderItem(mouse, 5));
-            order.AddItem(new OrderItem(teclado, 5));
-            order.AddItem(new OrderItem(cadeira, 5));
-            order.AddItem(new OrderItem(impressora, 5));
+            //order.AddItem(new OrderItem(mouse, 5));
+            //order.AddItem(new OrderItem(teclado, 5));
+            //order.AddItem(new OrderItem(cadeira, 5));
+            //order.AddItem(new OrderItem(impressora, 5));
 
             //realizei o pedido
             order.Place();
+
+            //verificar se o pedido é válido
+            var valid = order.IsValid;
 
             //simular o pagamento
             order.Pay();
@@ -37,6 +40,8 @@ namespace MxStore.Tests
 
             //simular o cancelamento
             order.Cancel();
+
+           
 
         }
     }

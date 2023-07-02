@@ -1,4 +1,5 @@
-﻿using MxStore.Domain.StoreContext.ValueObjects;
+﻿using FluentValidator;
+using MxStore.Domain.StoreContext.ValueObjects;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -6,7 +7,7 @@ using System.Text;
 
 namespace MxStore.Domain.StoreContext.Entities
 {
-    public class Customer
+    public class Customer : Notifiable
     {
         private readonly IList<Address> _addresses;
 
