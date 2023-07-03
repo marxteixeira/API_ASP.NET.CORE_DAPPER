@@ -42,5 +42,13 @@ namespace MxStore.Tests.ValueObjects
             Assert.AreEqual(false, name.IsValid);
             Assert.AreEqual(1, name.Notifications.Count);
         }
+
+        [TestMethod]
+        public void DeveRetornarNotificacaoQuandoNomeInvalido()
+        {
+            var name = new Name("", "Teixeira");
+            Assert.AreEqual(false, name.IsValid);
+            Assert.AreEqual(1, name.Notifications.Count);
+        }
     }
 }
