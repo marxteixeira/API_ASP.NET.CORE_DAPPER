@@ -1,11 +1,13 @@
-﻿using MxStore.Domain.StoreContext.Enums;
+﻿using FluentValidator;
+using MxStore.Domain.StoreContext.Enums;
+using MxStore.Shared.Commands;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace MxStore.Domain.StoreContext.Commands.CustomerCommands.Inputs
 {
-    public class AddAddressCommand
+    public class AddAddressCommand : Notifiable, ICommand
     {
         public Guid Id { get; set; }
         public string Street { get; set; }
@@ -17,5 +19,10 @@ namespace MxStore.Domain.StoreContext.Commands.CustomerCommands.Inputs
         public string Country { get; set; }
         public string ZipCode { get; set; }
         public EAddressType Type { get; set; }
+
+        public bool Valid()
+        {
+            return IsValid;
+        }
     }
 }
