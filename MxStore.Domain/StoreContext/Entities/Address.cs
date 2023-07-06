@@ -1,12 +1,13 @@
 ﻿using FluentValidator;
 using MxStore.Domain.StoreContext.Enums;
+using MxStore.Shared.Entity;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace MxStore.Domain.StoreContext.Entities
 {
-    public class Address : Notifiable
+    public class Address : Entity
     {
         public Address(string street, string number, string complement, string district, string city, string state, string country, string zipCode, EAddressType type)
         {

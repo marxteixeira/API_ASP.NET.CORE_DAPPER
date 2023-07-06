@@ -1,11 +1,12 @@
 ﻿using FluentValidator;
+using MxStore.Shared.Entity;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace MxStore.Domain.StoreContext.Entities
 {
-    public class Product : Notifiable
+    public class Product : Entity
     {
         public Product(
             string title,

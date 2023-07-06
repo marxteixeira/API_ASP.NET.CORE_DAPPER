@@ -1,11 +1,12 @@
 ﻿using MxStore.Domain.StoreContext.Enums;
+using MxStore.Shared.Entity;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace MxStore.Domain.StoreContext.Entities
 {
-    public class Delivery
+    public class Delivery : Entity
     {
         public Delivery(DateTime estimatedDeliveryDate)
         {
