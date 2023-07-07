@@ -49,7 +49,9 @@ namespace MxStore.Infra.StoreContext.Repository
                 .Connection
                 .Query<CustomerOrdersCountResult>(
                     "spGetCustomerOrdersCount",
-                    new {Document})
+                    new {Document = document},
+                    commandType: CommandType.StoredProcedure)
+                .FirstOrDefault();
         }
 
         public void Save(Customer customer)
