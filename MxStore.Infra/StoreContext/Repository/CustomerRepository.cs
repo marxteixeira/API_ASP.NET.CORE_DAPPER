@@ -1,5 +1,6 @@
 ﻿using Dapper;
 using MxStore.Domain.StoreContext.Entities;
+using MxStore.Domain.StoreContext.Queries;
 using MxStore.Domain.StoreContext.Repositories;
 using MxStore.Domain.StoreContext.ValueObjects;
 using MxStore.Infra.StoreContext.DataContext;
@@ -40,6 +41,15 @@ namespace MxStore.Infra.StoreContext.Repository
                     new { Email = email },
                     commandType: CommandType.StoredProcedure)
                 .FirstOrDefault();
+        }
+
+        public CustomerOrdersCountResult GetCustomerOrdersCount(string document)
+        {
+            return _context
+                .Connection
+                .Query<CustomerOrdersCountResult>(
+                    "spGetCustomerOrdersCount",
+                    new {Document})
         }
 
         public void Save(Customer customer)
