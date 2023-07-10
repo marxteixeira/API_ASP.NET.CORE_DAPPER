@@ -17,6 +17,7 @@
   <ItemGroup>
     <ProjectReference Include="..\MxStore.Domain\MxStore.Domain.csproj" />
     <ProjectReference Include="..\MxStore.Shared\MxStore.Shared.csproj" />
+    <ProjectReference Include="..\MxStore.Infra\MxStore.Infra.csproj" />
   </ItemGroup>
 
 </Project>

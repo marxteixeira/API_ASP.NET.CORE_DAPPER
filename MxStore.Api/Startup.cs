@@ -6,6 +6,10 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
+using MxStore.Domain.StoreContext.Repositories;
+using MxStore.Domain.StoreContext.Services;
+using MxStore.Infra.StoreContext.DataContext;
+using MxStore.Infra.StoreContext.Services;
 
 namespace MxStore.Api
 {
@@ -16,6 +20,9 @@ namespace MxStore.Api
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc();
+            services.AddScoped<BaltaDataContext, BaltaDataContext>();
+            services.AddTransient<ICustomerRepository, ICustomerRepository>();
+            services.AddTransient<IEmailService, EmailService> ();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

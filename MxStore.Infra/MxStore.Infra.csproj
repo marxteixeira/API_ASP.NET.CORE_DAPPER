@@ -10,10 +10,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="StoreContext\NewFolder\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\MxStore.Domain\MxStore.Domain.csproj" />
     <ProjectReference Include="..\MxStore.Shared\MxStore.Shared.csproj" />
   </ItemGroup>
