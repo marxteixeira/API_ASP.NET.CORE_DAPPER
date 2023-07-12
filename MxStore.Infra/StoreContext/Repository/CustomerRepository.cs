@@ -43,6 +43,23 @@ namespace MxStore.Infra.StoreContext.Repository
                 .FirstOrDefault();
         }
 
+        public IEnumerable<ListCustomerQueryResult> Get()
+        {
+            return
+                _context
+                .Connection
+                .Query<ListCustomerQueryResult>("SELECT [Id], CONCAT([FirstName], ' ', [LastName]) AS [Name], [Document], [Email] FROM [Customer]", new { });
+        }
+
+        public GetCustomerQueryResult Get(Guid id)
+        {
+            return
+               _context
+               .Connection
+               .Query<GetCustomerQueryResult>("SELECT [Id], CONCAT([FirstName], ' ', [LastName]) AS [Name], [Document], [Email] FROM [Customer] WHERE [Id]=@id", new { id = id })
+               .FirstOrDefault();
+        }
+
         public CustomerOrdersCountResult GetCustomerOrdersCount(string document)
         {
             return _context
