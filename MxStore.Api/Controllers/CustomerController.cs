@@ -1,9 +1,12 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using MxStore.Domain.StoreContext.Commands.CustomerCommands.Inputs;
+using MxStore.Domain.StoreContext.Commands.CustomerCommands.Outputs;
 using MxStore.Domain.StoreContext.Entities;
+using MxStore.Domain.StoreContext.Handlers;
 using MxStore.Domain.StoreContext.Queries;
 using MxStore.Domain.StoreContext.Repositories;
 using MxStore.Domain.StoreContext.ValueObjects;
+using SQLitePCL;
 using System;
 using System.Collections.Generic;
 using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
@@ -14,9 +17,12 @@ namespace MxStore.Api.Controllers
     {
         private readonly ICustomerRepository _repository;
 
-        public CustomerController(ICustomerRepository repository)
+        private readonly CustomerHandler _handler;
+
+        public CustomerController(ICustomerRepository repository, CustomerHandler handler)
         {
             _repository = repository;
+            _handler = handler;
         }
 
         [HttpGet]
@@ -42,14 +48,14 @@ namespace MxStore.Api.Controllers
 
         [HttpPost]
         [Route("customers")]
-        public Customer Post([FromBody]CreateCustomerCommand command)
+        public object Post([FromBody]CreateCustomerCommand command)
         {
-            var name = new Name(command.FirstName, command.LastName);
-            var document = new Document(command.Document);
-            var email = new Email(command.Email);
-            var customer = new Customer(name, document, email, command.Phone);
+            var result = (CreateCustomerCommandResult)_handler.Handle(command);
 
-            return customer;
+            if (_handler.Invalid)
+                return BadRequest(_handler.Notifications);
+
+            return result;
         }
 
         [HttpPut]
