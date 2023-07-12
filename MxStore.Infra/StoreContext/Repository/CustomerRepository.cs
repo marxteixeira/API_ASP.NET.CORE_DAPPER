@@ -9,6 +9,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 using System.Text;
+using System.Xml.Linq;
 
 namespace MxStore.Infra.StoreContext.Repository
 {
@@ -69,6 +70,14 @@ namespace MxStore.Infra.StoreContext.Repository
                     new {Document = document},
                     commandType: CommandType.StoredProcedure)
                 .FirstOrDefault();
+        }
+
+        public IEnumerable<ListCustomerOrdersQueryResult> GetOrders(Guid id)
+        {
+            return
+                _context
+                .Connection
+                .Query<ListCustomerOrdersQueryResult>("", new { id = id });
         }
 
         public void Save(Customer customer)

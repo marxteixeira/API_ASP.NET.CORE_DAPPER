@@ -35,24 +35,9 @@ namespace MxStore.Api.Controllers
 
         [HttpGet]
         [Route("customers/{id}/orders")]
-        public List<Order> GetOrders(Guid id)
+        public IEnumerable<ListCustomerOrdersQueryResult> GetOrders(Guid id)
         {
-            var name = new Name("Marx", "Teixeira");
-            var document = new Document("109021746845");
-            var email = new Email("email@email.com");
-            var customer = new Customer(name, document, email, "32984848484");
-
-            var order = new Order(customer);
-            var mouse = new Product("Mouse Gamer", "Mouse Gamer", "mouse.jpg", 100M, 10);
-            var monitor = new Product("monitor Gamer", "monitor Gamer", "momonitoruse.jpg", 100M, 10);
-            order.AddItem(monitor, 5);
-            order.AddItem(mouse, 5);
-
-            var orders = new List<Order>();
-            orders.Add(order);
-
-
-            return orders;
+            return _repository.GetOrders(id);
         }
 
         [HttpPost]
