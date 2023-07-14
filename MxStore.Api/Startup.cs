@@ -14,15 +14,26 @@ using MxStore.Infra.StoreContext.DataContext;
 using MxStore.Infra.StoreContext.Repository;
 using MxStore.Infra.StoreContext.Services;
 using Swashbuckle.AspNetCore.Swagger;
+using Microsoft.Extensions.Configuration;
+using System.IO;
+using MxStore.Shared;
 
 namespace MxStore.Api
 {
     public class Startup
     {
+        public static IConfiguration Configuration { get; set; }
+
         // This method gets called by the runtime. Use this method to add services to the container.Teste 2
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
+            var builder = new ConfigurationBuilder()
+                .SetBasePath(Directory.GetCurrentDirectory())
+                .AddJsonFile("appsettings.json");
+
+            Configuration = builder.Build();
+
             services.AddMvc();
 
             services.AddResponseCompression();
@@ -37,6 +48,8 @@ namespace MxStore.Api
             {
                 x.SwaggerDoc("v1", new Info { Title = "Mx Store", Version = "v1" });
             });
+
+            Settings.ConnectionString = $"{Configuration["connectionString"]}";
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
