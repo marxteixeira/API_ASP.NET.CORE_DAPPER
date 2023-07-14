@@ -61,6 +61,11 @@ namespace MxStore.Infra.StoreContext.Repository
                .FirstOrDefault();
         }
 
+        public GetCustomerQueryResult GetByDocument(Guid document)
+        {
+            throw new NotImplementedException();
+        }
+
         public CustomerOrdersCountResult GetCustomerOrdersCount(string document)
         {
             return _context

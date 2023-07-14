@@ -21,6 +21,9 @@ namespace MxStore.Api
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc();
+
+            services.AddResponseCompression();
+
             services.AddScoped<BaltaDataContext, BaltaDataContext>();
             services.AddTransient<ICustomerRepository, ICustomerRepository>();
             services.AddTransient<IEmailService, EmailService> ();
@@ -34,6 +37,7 @@ namespace MxStore.Api
                 app.UseDeveloperExceptionPage();
             
             app.UseMvc();
+            app.UseResponseCompression();
 
         }
     }

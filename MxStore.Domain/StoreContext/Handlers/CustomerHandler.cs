@@ -48,7 +48,10 @@ namespace MxStore.Domain.StoreContext.Handlers
             AddNotifications(customer.Notifications);
 
             if (Invalid)
-                return null;
+                return new CommandResult(
+                    false,
+                    "Por favor, corrija os campos abaixo:",
+                    Notifications);
 
             //persistir o cliente
             _repository.Save(customer);
@@ -58,7 +61,11 @@ namespace MxStore.Domain.StoreContext.Handlers
 
             //retornar o resultado para tela
 
-            return new CreateCustomerCommandResult(customer.Id, name.ToString(), email.Address);
+            return new CommandResult(true, "Bem-vindo ao Mx Store", new {
+                Id = customer.Id,
+                Name = name.ToString(),
+                Email = email.Address
+            });
         }
 
         public ICommandResult Handle(AddAddressCommand command)

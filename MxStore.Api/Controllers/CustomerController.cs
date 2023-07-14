@@ -6,6 +6,7 @@ using MxStore.Domain.StoreContext.Handlers;
 using MxStore.Domain.StoreContext.Queries;
 using MxStore.Domain.StoreContext.Repositories;
 using MxStore.Domain.StoreContext.ValueObjects;
+using MxStore.Shared.Commands;
 using SQLitePCL;
 using System;
 using System.Collections.Generic;
@@ -26,17 +27,26 @@ namespace MxStore.Api.Controllers
         }
 
         [HttpGet]
-        [Route("customers")]
+        [Route("v1/customers")]
+        [ResponseCache(Location = ResponseCacheLocation.Client, Duration = 60)] //esse Location resaliza o cache no lado do client, sem esse parâmetro cachea do lado do servidor
+        // cache-control: public,max-age=60
         public IEnumerable<ListCustomerQueryResult> Get()
         {          
             return _repository.Get();
         }
 
         [HttpGet]
-        [Route("customers/{id}")]
+        [Route("v1/customers/{id}")]
         public GetCustomerQueryResult GetById(Guid id)
         {   
             return _repository.Get(id);
+        }
+
+        [HttpGet]
+        [Route("v2/customers/{document}")]
+        public GetCustomerQueryResult GetByDocument(Guid document)
+        {
+            return _repository.Get(document);
         }
 
         [HttpGet]
@@ -48,12 +58,9 @@ namespace MxStore.Api.Controllers
 
         [HttpPost]
         [Route("customers")]
-        public object Post([FromBody]CreateCustomerCommand command)
+        public ICommandResult Post([FromBody]CreateCustomerCommand command)
         {
-            var result = (CreateCustomerCommandResult)_handler.Handle(command);
-
-            if (_handler.Invalid)
-                return BadRequest(_handler.Notifications);
+            var result = (CreateCustomerCommandResult)_handler.Handle(command);         
 
             return result;
         }

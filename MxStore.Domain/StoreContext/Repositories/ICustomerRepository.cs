@@ -16,5 +16,6 @@ namespace MxStore.Domain.StoreContext.Repositories
         IEnumerable<ListCustomerQueryResult> Get();
         GetCustomerQueryResult Get(Guid id);
         IEnumerable<ListCustomerOrdersQueryResult> GetOrders(Guid id);
+        GetCustomerQueryResult GetByDocument(Guid document);
     }
 }

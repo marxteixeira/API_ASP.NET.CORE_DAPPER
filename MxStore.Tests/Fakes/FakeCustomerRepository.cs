@@ -19,7 +19,27 @@ namespace MxStore.Tests.Fakes
             return false;
         }
 
+        public IEnumerable<ListCustomerQueryResult> Get()
+        {
+            throw new NotImplementedException();
+        }
+
+        public GetCustomerQueryResult Get(Guid id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public GetCustomerQueryResult GetByDocument(Guid document)
+        {
+            throw new NotImplementedException();
+        }
+
         public CustomerOrdersCountResult GetCustomerOrdersCount(string document)
+        {
+            throw new NotImplementedException();
+        }
+
+        public IEnumerable<ListCustomerOrdersQueryResult> GetOrders(Guid id)
         {
             throw new NotImplementedException();
         }
