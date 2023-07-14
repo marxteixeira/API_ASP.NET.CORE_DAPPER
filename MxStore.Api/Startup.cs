@@ -10,7 +10,9 @@ using MxStore.Domain.StoreContext.Handlers;
 using MxStore.Domain.StoreContext.Repositories;
 using MxStore.Domain.StoreContext.Services;
 using MxStore.Infra.StoreContext.DataContext;
+using MxStore.Infra.StoreContext.Repository;
 using MxStore.Infra.StoreContext.Services;
+using Swashbuckle.AspNetCore.Swagger;
 
 namespace MxStore.Api
 {
@@ -25,9 +27,15 @@ namespace MxStore.Api
             services.AddResponseCompression();
 
             services.AddScoped<BaltaDataContext, BaltaDataContext>();
-            services.AddTransient<ICustomerRepository, ICustomerRepository>();
+            services.AddTransient<ICustomerRepository, CustomerRepository>();
             services.AddTransient<IEmailService, EmailService> ();
             services.AddTransient<CustomerHandler, CustomerHandler>();
+            services.AddTransient<CustomerHandler, CustomerHandler>();
+
+            services.AddSwaggerGen(x =>
+            {
+                x.SwaggerDoc("v1", new Info { Title = "Mx Store", Version = "v1" });
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -38,6 +46,12 @@ namespace MxStore.Api
             
             app.UseMvc();
             app.UseResponseCompression();
+
+            app.UseSwagger();
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "Mx Store - V1");
+            });
 
         }
     }
