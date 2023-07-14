@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Elmah.Io.AspNetCore;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -52,6 +53,8 @@ namespace MxStore.Api
             {
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "Mx Store - V1");
             });
+
+            app.UseElmahIo("92df7844de344b8a86c04b890f39f26b", new Guid("83ff12da-91e0-4d78-bc88-049b1f7b9af0"));
 
         }
     }

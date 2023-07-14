@@ -84,6 +84,15 @@ namespace MxStore.Api.Controllers
             return new {message = "Cliente removido com sucesso."};
         }
 
+        [HttpGet]
+        [Route("error")]
+        public string Error()
+        {
+            throw new Exception("Algum erro aconteceu.");
+
+            return "erro";
+        }
+
 
 
     }
